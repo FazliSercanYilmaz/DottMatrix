@@ -1,0 +1,17 @@
+{
+  "name": "dott-assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:Dev": "ts-node ./src/main.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "ts-node": "^10.8.1"
+  }
+}
