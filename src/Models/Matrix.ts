@@ -1,9 +1,12 @@
 import { Location } from "./Location";
 
-abstract class Matrix<T> {
-  rowLength: number;
-  columnLength: number;
-  data: Array<Array<T>>;
+export abstract class Matrix<T> {
+  constructor(
+    private rowLength: number,
+    private columnLength: number,
+    private data: Array<Array<T>>
+  ) {}
+
   getValue(location: Location): T {
     //TODO index control
     return this.data?.[location.x]?.[location.y];
