@@ -1,8 +1,9 @@
 import { IMatrixProcessor } from "./IMatrixProcessor";
 import { PixelColor } from "../Models/Enums/PixelColor";
 import { PixelMatrix } from "../Models/Domains/PixelMatrix";
-import { ColumnOutOfRangeException } from "src/Models/Exceptions/ColumnOutOfRangeException";
-import { PixelColorNotFoundException } from "src/Models/Exceptions/PixelColorNotFoundException";
+import { ColumnOutOfRangeException } from "../Models/Exceptions/ColumnOutOfRangeException";
+import * as Joi from "joi";
+import { PixelColorNotFoundException } from "../Models/Exceptions/PixelColorNotFoundException";
 
 export class PixelMatrixProcessor
   implements IMatrixProcessor<string, PixelMatrix>
@@ -17,14 +18,22 @@ export class PixelMatrixProcessor
     const rowNumber = matrix.insertRow([]);
 
     for (let index = 0; index < rowData.length; index++) {
-      const pixelColor = Number.parseInt(rowData[index]);
+      const value = this.validatePixelColor(rowData[index]);
 
-      if (pixelColor !== PixelColor.BLACK && pixelColor !== PixelColor.WHITE) {
-        throw new PixelColorNotFoundException();
-      }
-
-      matrix.setValue({ x: rowNumber, y: index }, pixelColor);
+      matrix.setValue({ x: rowNumber, y: index }, value);
     }
+  }
+
+  private validatePixelColor(data: any): PixelColor {
+    const { error, value } = Joi.number()
+      .valid(PixelColor.BLACK, PixelColor.WHITE)
+      .validate(data, { convert: true });
+
+    if (error) {
+      throw new PixelColorNotFoundException();
+    }
+
+    return value;
   }
 
   matrixToData(matrix: PixelMatrix): string {

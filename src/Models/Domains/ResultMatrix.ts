@@ -1,4 +1,3 @@
-import { RowOutOfRangeException } from "../Exceptions/RowOutOfRangeException";
 import { Matrix } from "./Matrix";
 
 export class ResultMatrix extends Matrix<number> {

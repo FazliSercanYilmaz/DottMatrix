@@ -3,4 +3,5 @@ export enum ExceptionCodes {
   COLOMN_OUT_OF_RANGE = 200,
   ROW_OUT_OF_RANGE = 300,
   PIXEL_COLOR_NOT_FOUND = 400,
+  RESULT_VALUE_IS_WRONG = 500,
 }

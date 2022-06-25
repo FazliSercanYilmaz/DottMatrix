@@ -1,6 +1,8 @@
 import { IMatrixProcessor } from "./IMatrixProcessor";
 import { ResultMatrix } from "../Models/Domains/ResultMatrix";
-import { ColumnOutOfRangeException } from "src/Models/Exceptions/ColumnOutOfRangeException";
+import { ColumnOutOfRangeException } from "../Models/Exceptions/ColumnOutOfRangeException";
+import * as Joi from "joi";
+import { ResultValueIsWrongException } from "../Models/Exceptions/ResultValueIsWrongException";
 
 export class ResultMatrixProcessor
   implements IMatrixProcessor<string | Array<number>, ResultMatrix>
@@ -15,10 +17,20 @@ export class ResultMatrixProcessor
     const rowNumber = matrix.insertRow([]);
 
     for (let index = 0; index < rowData.length; index++) {
-      const value = rowData[index];
+      const value = this.validateValue(rowData[index]);
 
       matrix.setValue({ x: rowNumber, y: index }, value);
     }
+  }
+
+  private validateValue(data: any) {
+    const { error, value } = Joi.number().validate(data, { convert: true });
+
+    if (error) {
+      throw new ResultValueIsWrongException();
+    }
+
+    return value;
   }
 
   matrixToData(matrix: ResultMatrix): string {
