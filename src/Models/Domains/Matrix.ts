@@ -1,5 +1,5 @@
-import { IndexOutOfRangeException } from "../Exceptions/IndexOutOfRangeException";
-import { RowOutOfRangeException } from "../Exceptions/RowOutOfRangeException";
+import { IndexOutOfRangeException } from "../Exceptions/Matrix/IndexOutOfRangeException";
+import { RowOutOfRangeException } from "../Exceptions/Matrix/RowOutOfRangeException";
 import { Location } from "./Location";
 
 export abstract class Matrix<T> {

@@ -1,5 +1,6 @@
 import { IConfig } from "../Models/Domains/IConfig";
 import * as Joi from "joi";
+import { ConfigIsWrongException } from "../Models/Exceptions/Config/ConfigIsWrongException";
 
 export class Config implements IConfig {
   public readonly testCaseMinSize: number;
@@ -31,8 +32,9 @@ export class Config implements IConfig {
     const { error, value } = validationSchema.validate(this);
 
     if (error) {
-      throw new Error("todo");
+      throw new ConfigIsWrongException(error.message);
     }
+
     return value;
   }
 }

@@ -1,6 +1,6 @@
-import { ExceptionCodes } from "../Enums/ExceptionCodes";
-import { ExceptionMessages } from "../Enums/ExceptionMessages";
-import { Exception } from "./Exception";
+import { ExceptionCodes } from "../../Enums/ExceptionCodes";
+import { ExceptionMessages } from "../../Enums/ExceptionMessages";
+import { Exception } from "../Exception";
 
 export class IndexOutOfRangeException extends Exception {
   constructor() {

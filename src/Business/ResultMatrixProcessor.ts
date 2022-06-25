@@ -1,8 +1,8 @@
 import { IMatrixProcessor } from "./IMatrixProcessor";
 import { ResultMatrix } from "../Models/Domains/ResultMatrix";
-import { ColumnOutOfRangeException } from "../Models/Exceptions/ColumnOutOfRangeException";
+import { ColumnOutOfRangeException } from "../Models/Exceptions/Matrix/ColumnOutOfRangeException";
 import * as Joi from "joi";
-import { ResultValueIsWrongException } from "../Models/Exceptions/ResultValueIsWrongException";
+import { ValueIsWrongException } from "../Models/Exceptions/Matrix/ValueIsWrongException";
 
 export class ResultMatrixProcessor
   implements IMatrixProcessor<string | Array<number>, ResultMatrix>
@@ -24,10 +24,12 @@ export class ResultMatrixProcessor
   }
 
   private validateValue(data: any) {
-    const { error, value } = Joi.number().validate(data, { convert: true });
+    const { error, value } = Joi.number()
+      .required()
+      .validate(data, { convert: true });
 
     if (error) {
-      throw new ResultValueIsWrongException();
+      throw new ValueIsWrongException(error.message);
     }
 
     return value;

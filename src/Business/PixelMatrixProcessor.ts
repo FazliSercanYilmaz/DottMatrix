@@ -1,9 +1,9 @@
 import { IMatrixProcessor } from "./IMatrixProcessor";
 import { PixelColor } from "../Models/Enums/PixelColor";
 import { PixelMatrix } from "../Models/Domains/PixelMatrix";
-import { ColumnOutOfRangeException } from "../Models/Exceptions/ColumnOutOfRangeException";
+import { ColumnOutOfRangeException } from "../Models/Exceptions/Matrix/ColumnOutOfRangeException";
 import * as Joi from "joi";
-import { PixelColorNotFoundException } from "../Models/Exceptions/PixelColorNotFoundException";
+import { ValueIsWrongException } from "../Models/Exceptions/Matrix/ValueIsWrongException";
 
 export class PixelMatrixProcessor
   implements IMatrixProcessor<string, PixelMatrix>
@@ -26,11 +26,12 @@ export class PixelMatrixProcessor
 
   private validatePixelColor(data: any): PixelColor {
     const { error, value } = Joi.number()
+      .required()
       .valid(PixelColor.BLACK, PixelColor.WHITE)
       .validate(data, { convert: true });
 
     if (error) {
-      throw new PixelColorNotFoundException();
+      throw new ValueIsWrongException(error.message);
     }
 
     return value;

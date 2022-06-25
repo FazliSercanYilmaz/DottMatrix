@@ -1,9 +1,10 @@
 import { Input } from "../Models/Domains/Input";
 import { Result } from "../Models/Domains/Result";
-import { Matrix } from "src/Models/Domains/Matrix";
+import { Matrix } from "../Models/Domains/Matrix";
 import { IMatrixProcessor } from "./IMatrixProcessor";
-import { IConfig } from "src/Models/Domains/IConfig";
+import { IConfig } from "../Models/Domains/IConfig";
 import * as Joi from "joi";
+import { InputIsWrongException } from "../Models/Exceptions/Command/InputIsWrongException";
 var readline = require("readline");
 
 export class CommandProcessor {
@@ -39,12 +40,13 @@ export class CommandProcessor {
   }
   private validateTestCase(line: string): number {
     const { value, error } = Joi.number()
+      .required()
       .min(this.config.testCaseMinSize)
       .max(this.config.testCaseMaxSize)
       .validate(line, { convert: true });
 
     if (error) {
-      throw new Error("todo");
+      throw new InputIsWrongException(error.message);
     }
 
     return value;
@@ -54,21 +56,23 @@ export class CommandProcessor {
     const [rowString, colString] = line.split(" ");
 
     const { value: row, error: rowError } = Joi.number()
+      .required()
       .min(this.config.matrixMinRow)
       .max(this.config.matrixMaxRow)
       .validate(rowString, { convert: true });
 
     if (rowError) {
-      throw new Error("todo");
+      throw new InputIsWrongException(rowError.message);
     }
 
     const { value: col, error: colError } = Joi.number()
+      .required()
       .min(this.config.matrixMinRow)
       .max(this.config.matrixMaxRow)
       .validate(colString, { convert: true });
 
     if (colError) {
-      throw new Error("todo");
+      throw new InputIsWrongException(colError.message);
     }
 
     return { row, col };
