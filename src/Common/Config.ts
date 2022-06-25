@@ -21,12 +21,12 @@ export class Config implements IConfig {
     this.matrixMaxColom = env.matrixMaxColom;
 
     const validationSchema = Joi.object().keys({
-      testCaseMinSize: Joi.number().default(1),
-      testCaseMaxSize: Joi.number().default(100),
-      matrixMaxRow: Joi.number().default(182),
-      matrixMinRow: Joi.number().default(1),
-      matrixMinColom: Joi.number().default(1),
-      matrixMaxColom: Joi.number().default(182),
+      testCaseMinSize: Joi.number().integer().default(1).min(1),
+      testCaseMaxSize: Joi.number().integer().default(100).min(1),
+      matrixMaxRow: Joi.number().integer().default(182).min(1),
+      matrixMinRow: Joi.number().integer().default(1).min(1),
+      matrixMinColom: Joi.number().integer().default(1).min(1),
+      matrixMaxColom: Joi.number().integer().default(182).min(1),
     });
 
     const { error, value } = validationSchema.validate(this);
