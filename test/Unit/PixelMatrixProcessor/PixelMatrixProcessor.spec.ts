@@ -76,7 +76,7 @@ describe("Pixel Matrix Processor  Test", () => {
   it("should throw Exception when Inserted row Value not Equal to number", () => {
     // given
     const pixelMatrixProcessor = new PixelMatrixProcessor();
-    const rowData = "A001";
+    const rowData = "2001";
 
     const row = 4;
     const col = 4;
