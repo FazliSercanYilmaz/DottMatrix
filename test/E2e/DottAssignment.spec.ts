@@ -1,6 +1,8 @@
 import { Matrix } from "../../src/Models/Domains/Matrix";
 import { Result } from "../../src/Models/Domains/Result";
 import { commandProcessor, main } from "../../src/main";
+import { Exception } from "../../src/Models/Exceptions/Exception";
+import { InputIsWrongException } from "src/Models/Exceptions/Command/InputIsWrongException";
 
 describe("Dott Assignment E2e", () => {
   it("should return Result", async () => {
@@ -50,6 +52,56 @@ describe("Dott Assignment E2e", () => {
         ],
       },
     });
+
+    jest.restoreAllMocks();
+  });
+
+  it("should Exception when test case size Input is wrong", async () => {
+    //given
+    let lineNumber = 0;
+    const input = ["A   ", "3 4", "0001", "0011", "0110"];
+    let error: Exception = null;
+    const lineReader = async () => {
+      return input[lineNumber++];
+    };
+
+    //stdin
+    jest
+      .spyOn(commandProcessor, "readFromCommand")
+      .mockImplementation(lineReader);
+
+    //when
+    await main().catch((e) => (error = e));
+
+    //then
+    expect(error).toBeDefined();
+    expect(error.code).toBe(700);
+    expect(error.message).toBe("Input is wrong");
+
+    jest.restoreAllMocks();
+  });
+
+  it("should Exception when test case size Input is wrong", async () => {
+    //given
+    let lineNumber = 0;
+    const input = ["A   ", "3 4", "0001", "0011", "0110"];
+    let error: Exception = null;
+    const lineReader = async () => {
+      return input[lineNumber++];
+    };
+
+    //stdin
+    jest
+      .spyOn(commandProcessor, "readFromCommand")
+      .mockImplementation(lineReader);
+
+    //when
+    await main().catch((e) => (error = e));
+
+    //then
+    expect(error).toBeDefined();
+    expect(error.code).toBe(700);
+    expect(error.message).toBe("Input is wrong");
 
     jest.restoreAllMocks();
   });

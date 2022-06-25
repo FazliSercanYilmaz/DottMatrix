@@ -43,7 +43,9 @@ export class PixelMatrixProcessor
       for (let y = 0; y < matrix.columnLength; y++) {
         result += matrix.getValue({ x, y }).toString();
       }
-      result += "\n";
+      if (x !== matrix.rowLength - 1) {
+        result += "\n";
+      }
     }
     return result;
   }

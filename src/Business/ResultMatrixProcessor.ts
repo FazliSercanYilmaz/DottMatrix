@@ -38,15 +38,22 @@ export class ResultMatrixProcessor
 
   matrixToData(matrix: ResultMatrix): string {
     let result = "";
+
     for (let x = 0; x < matrix.rowLength; x++) {
       for (let y = 0; y < matrix.columnLength; y++) {
-        result += matrix.getValue({ x, y }).toString();
+        const value = matrix.getValue({ x, y })?.toString();
+        if (value) {
+          result += value;
+        }
 
         if (y !== matrix.columnLength - 1) {
           result += " ";
         }
       }
-      result += "\n";
+
+      if (x !== matrix.rowLength - 1) {
+        result += "\n";
+      }
     }
     return result;
   }
