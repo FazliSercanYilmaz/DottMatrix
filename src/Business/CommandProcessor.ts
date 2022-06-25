@@ -32,14 +32,14 @@ export class CommandProcessor {
     return { inputMatrix: matrix, testCase: Number.parseInt(testCase) };
   }
 
-  saveData(data: Result) {
+  async saveData(data: Result) {
     console.log(data.testCase);
     console.log(data.inputMatrix.rowLength, " ", data.inputMatrix.columnLength);
     console.log(this.matrixProcessor.matrixToData(data.inputMatrix));
     console.log(this.resultMatrixProcessor.matrixToData(data.resultMatrix));
   }
 
-  private readFromCommand(): Promise<string> {
+  readFromCommand(): Promise<string> {
     return new Promise((resolve) => {
       this.commandReader.question("", (line) => {
         resolve(line);

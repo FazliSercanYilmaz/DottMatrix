@@ -7,24 +7,24 @@ import { ResultMatrixProcessor } from "./Business/ResultMatrixProcessor";
 import { Matrix } from "./Models/Domains/Matrix";
 import { PixelColor } from "./Models/Enums/PixelColor";
 
-let matrixProcessor: IMatrixProcessor<
+export const matrixProcessor: IMatrixProcessor<
   any,
   Matrix<any>
 > = new PixelMatrixProcessor();
 
-let resultMatrixProcessor: IMatrixProcessor<
+export const resultMatrixProcessor: IMatrixProcessor<
   any,
   Matrix<any>
 > = new ResultMatrixProcessor();
 
-let commandProcessor = new CommandProcessor(
+export const commandProcessor = new CommandProcessor(
   matrixProcessor,
   resultMatrixProcessor
 );
 
-let finder: IFinder<any> = new Finder(resultMatrixProcessor);
+export async function main() {
+  const finder: IFinder<any> = new Finder(resultMatrixProcessor);
 
-async function main() {
   const input = await commandProcessor.getData();
 
   const resultMatrix = finder.findDistanceMatrix(
@@ -34,5 +34,3 @@ async function main() {
 
   commandProcessor.saveData({ ...input, resultMatrix });
 }
-
-main();
