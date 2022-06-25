@@ -41,6 +41,7 @@ export class CommandProcessor {
   private validateTestCase(line: string): number {
     const { value, error } = Joi.number()
       .required()
+      .integer()
       .min(this.config.testCaseMinSize)
       .max(this.config.testCaseMaxSize)
       .validate(line, { convert: true });
@@ -57,6 +58,7 @@ export class CommandProcessor {
 
     const { value: row, error: rowError } = Joi.number()
       .required()
+      .integer()
       .min(this.config.matrixMinRow)
       .max(this.config.matrixMaxRow)
       .validate(rowString, { convert: true });
@@ -67,6 +69,7 @@ export class CommandProcessor {
 
     const { value: col, error: colError } = Joi.number()
       .required()
+      .integer()
       .min(this.config.matrixMinRow)
       .max(this.config.matrixMaxRow)
       .validate(colString, { convert: true });

@@ -25,6 +25,7 @@ export class ResultMatrixProcessor
 
   private validateValue(data: any) {
     const { error, value } = Joi.number()
+      .integer()
       .required()
       .validate(data, { convert: true });
 
