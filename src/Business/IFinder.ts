@@ -7,4 +7,6 @@ export interface IFinder<T> {
     matrix: Matrix<T>,
     targetValue: T
   ): number;
+
+  findDistanceMatrix(matrix: Matrix<T>, targetValue: T): Matrix<number>;
 }
