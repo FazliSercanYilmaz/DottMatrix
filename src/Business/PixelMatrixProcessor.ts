@@ -27,6 +27,13 @@ export class PixelMatrixProcessor
   }
 
   matrixToData(matrix: PixelMatrix): string {
-    return " ";
+    let result = "";
+    for (let x = 0; x < matrix.rowLength; x++) {
+      for (let y = 0; y < matrix.columnLength; y++) {
+        result += matrix.getValue({ x, y }).toString();
+      }
+      result += "\n";
+    }
+    return result;
   }
 }
