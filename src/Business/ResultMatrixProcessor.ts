@@ -1,5 +1,6 @@
 import { IMatrixProcessor } from "./IMatrixProcessor";
 import { ResultMatrix } from "../Models/Domains/ResultMatrix";
+import { ColumnOutOfRangeException } from "src/Models/Exceptions/ColumnOutOfRangeException";
 
 export class ResultMatrixProcessor
   implements IMatrixProcessor<string | Array<number>, ResultMatrix>
@@ -9,8 +10,7 @@ export class ResultMatrixProcessor
   }
   insertRowToMatrix(rowData: Array<number>, matrix: ResultMatrix) {
     if (rowData.length != matrix.columnLength) {
-      //TODO new Error
-      throw new Error("todo");
+      throw new ColumnOutOfRangeException();
     }
     const rowNumber = matrix.insertRow([]);
 

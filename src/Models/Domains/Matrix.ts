@@ -1,4 +1,5 @@
 import { IndexOutOfRangeException } from "../Exceptions/IndexOutOfRangeException";
+import { RowOutOfRangeException } from "../Exceptions/RowOutOfRangeException";
 import { Location } from "./Location";
 
 export abstract class Matrix<T> {
@@ -31,5 +32,14 @@ export abstract class Matrix<T> {
     if (isLocationOutOfRange) {
       throw new IndexOutOfRangeException();
     }
+  }
+
+  insertRow(rowData: Array<T>): number {
+    if (this.data.length >= this.rowLength) {
+      throw new RowOutOfRangeException();
+    }
+
+    this.data.push(rowData);
+    return this.data.length - 1;
   }
 }

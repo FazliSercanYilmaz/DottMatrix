@@ -1,3 +1,6 @@
 export enum ExceptionCodes {
   INDEX_OUT_OF_RANGE = 100,
+  COLOMN_OUT_OF_RANGE = 200,
+  ROW_OUT_OF_RANGE = 300,
+  PIXEL_COLOR_NOT_FOUND = 400,
 }

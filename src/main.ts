@@ -21,10 +21,9 @@ export const commandProcessor = new CommandProcessor(
   matrixProcessor,
   resultMatrixProcessor
 );
+export const finder: IFinder<any> = new Finder(resultMatrixProcessor);
 
 export async function main() {
-  const finder: IFinder<any> = new Finder(resultMatrixProcessor);
-
   const input = await commandProcessor.getData();
 
   const resultMatrix = finder.findDistanceMatrix(
