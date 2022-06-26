@@ -81,7 +81,7 @@ export class CommandProcessor {
     return { row, col };
   }
 
-  async saveData(data: Matrix<any>): void {
+  async saveData(data: Matrix<any>): Promise<void> {
     console.log(data.id);
     console.log(data.rowLength, " ", data.columnLength);
     console.log(this.resultMatrixProcessor.matrixToData(data));
