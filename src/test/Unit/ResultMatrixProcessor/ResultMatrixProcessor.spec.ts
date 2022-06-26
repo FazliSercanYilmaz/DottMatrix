@@ -11,8 +11,10 @@ describe("Result Matrix Processor Test", () => {
     const row = 5;
     const col = 5;
 
+    //when
     const matrix = resultMatrixProcessor.createMatrix(id, row, col);
 
+    //then
     expect(matrix).toBeInstanceOf(ResultMatrix);
     expect(matrix.rowLength).toBe(row);
     expect(matrix.columnLength).toBe(col);
@@ -32,6 +34,8 @@ describe("Result Matrix Processor Test", () => {
     resultMatrixProcessor.insertRowToMatrix(rowData, matrix);
     resultMatrixProcessor.insertRowToMatrix(rowData2, matrix);
 
+    //when
+    //then
     expect(resultMatrixProcessor.matrixToData(matrix)).toBe(
       "0 0 3 1 1\n0 0 3 1 1"
     );
@@ -47,11 +51,13 @@ describe("Result Matrix Processor Test", () => {
     const row = 4;
     const col = 4;
 
+    //when
     const matrix = resultMatrixProcessor.createMatrix(id, row, col);
 
     resultMatrixProcessor.insertRowToMatrix(rowData, matrix);
     resultMatrixProcessor.insertRowToMatrix(rowData2, matrix);
 
+    //then
     expect(matrix.getValue({ x: 0, y: 0 })).toBe(rowData[0]);
     expect(matrix.getValue({ x: 0, y: 1 })).toBe(rowData[1]);
     expect(matrix.getValue({ x: 0, y: 2 })).toBe(rowData[2]);

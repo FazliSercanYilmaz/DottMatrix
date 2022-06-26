@@ -94,6 +94,7 @@ describe("Pixel Matrix Processor  Test", () => {
     //when
     const matrix = pixelMatrixProcessor.createMatrix(testId, row, col);
 
+    //then
     expect(() =>
       pixelMatrixProcessor.insertRowToMatrix(rowData, matrix)
     ).toThrow(ColumnOutOfRangeException);
@@ -110,6 +111,7 @@ describe("Pixel Matrix Processor  Test", () => {
     //when
     const matrix = pixelMatrixProcessor.createMatrix(testId, row, col);
 
+    //then
     expect(() =>
       pixelMatrixProcessor.insertRowToMatrix(rowData, matrix)
     ).toThrow(ValueIsWrongException);

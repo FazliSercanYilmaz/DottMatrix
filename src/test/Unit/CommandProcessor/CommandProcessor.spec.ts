@@ -127,6 +127,7 @@ describe("Command Processor  Test", () => {
       .spyOn(commandProcessor, "readFromCommand")
       .mockImplementation(lineReader);
 
+    //then
     expect(() => commandProcessor.getData()).rejects.toThrow(
       InputIsWrongException
     );
@@ -222,6 +223,7 @@ describe("Command Processor  Test", () => {
       .spyOn(commandProcessor, "readFromCommand")
       .mockImplementation(lineReader);
 
+    //then
     expect(() => commandProcessor.getData()).rejects.toThrow(
       InputIsWrongException
     );
@@ -309,6 +311,7 @@ describe("Command Processor  Test", () => {
       .spyOn(commandProcessor, "readFromCommand")
       .mockImplementation(lineReader);
 
+    //then
     expect(() => commandProcessor.getData()).rejects.toThrow(
       InputIsWrongException
     );
@@ -446,6 +449,7 @@ describe("Command Processor  Test", () => {
         this.reader = this.commandReader;
       }
     };
+    //given
     const commandProcessor = new TestProcessor({} as any, {} as any, {} as any);
     const line = "1234";
 
@@ -455,6 +459,8 @@ describe("Command Processor  Test", () => {
         return callback(line);
       });
 
+    //when
+    //then
     expect(commandProcessor.readFromCommand()).resolves.toBe(line);
   });
 });
