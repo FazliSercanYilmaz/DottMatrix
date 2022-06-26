@@ -7,8 +7,12 @@ import { ValueIsWrongException } from "../Models/Exceptions/Matrix/ValueIsWrongE
 export class ResultMatrixProcessor
   implements IMatrixProcessor<string | Array<number>, ResultMatrix>
 {
-  createMatrix(rowLength: number, columnLength: number): ResultMatrix {
-    return new ResultMatrix(rowLength, columnLength);
+  createMatrix(
+    id: number,
+    rowLength: number,
+    columnLength: number
+  ): ResultMatrix {
+    return new ResultMatrix(id, rowLength, columnLength);
   }
   insertRowToMatrix(rowData: Array<number>, matrix: ResultMatrix) {
     if (rowData.length != matrix.columnLength) {
@@ -41,7 +45,7 @@ export class ResultMatrixProcessor
 
     for (let x = 0; x < matrix.rowLength; x++) {
       for (let y = 0; y < matrix.columnLength; y++) {
-        const value = matrix.getValue({ x, y })?.toString();
+        const value = matrix.getValue({ x, y }).toString();
         if (value) {
           result += value;
         }

@@ -1,8 +1,32 @@
+import { ConfigIsWrongException } from "../../Models/Exceptions/Config/ConfigIsWrongException";
+import { app } from "../../app";
+import { IMatrixProcessor } from "../../Business/IMatrixProcessor";
+import { PixelMatrixProcessor } from "../../Business/PixelMatrixProcessor";
 import { Matrix } from "../../Models/Domains/Matrix";
-import { Result } from "../../Models/Domains/Result";
-import { commandProcessor, main } from "../../main";
-import { Exception } from "../../Models/Exceptions/Exception";
-import { InputIsWrongException } from "src/Models/Exceptions/Command/InputIsWrongException";
+import { ResultMatrixProcessor } from "../../Business/ResultMatrixProcessor";
+import { IFinder } from "../../Business/IFinder";
+import { Finder } from "../../Business/Finder";
+import { CommandProcessor } from "../../Business/CommandProcessor";
+import { Config } from "../../Common/Config";
+const config = new Config({});
+
+const matrixProcessor: IMatrixProcessor<
+  any,
+  Matrix<any>
+> = new PixelMatrixProcessor();
+
+const resultMatrixProcessor: IMatrixProcessor<
+  any,
+  Matrix<any>
+> = new ResultMatrixProcessor();
+
+export const finder: IFinder<any> = new Finder(resultMatrixProcessor);
+
+const commandProcessor = new CommandProcessor(
+  config,
+  matrixProcessor,
+  resultMatrixProcessor
+);
 
 describe("Dott Assignment E2e", () => {
   it("should return Result", async () => {
@@ -30,27 +54,18 @@ describe("Dott Assignment E2e", () => {
       .mockImplementation(outputReader);
 
     //when
-    await main();
+    await app(commandProcessor, finder);
 
     //then
     expect(outputResult).toMatchObject({
-      testCase: 1,
-
-      inputMatrix: {
-        data: [
-          [0, 0, 0, 1],
-          [0, 0, 1, 1],
-          [0, 1, 1, 0],
-        ],
-      },
-
-      resultMatrix: {
-        data: [
-          [3, 2, 1, 0],
-          [2, 1, 0, 0],
-          [1, 0, 0, 1],
-        ],
-      },
+      id: 1,
+      rowLength: 3,
+      columnLength: 4,
+      data: [
+        [3, 2, 1, 0],
+        [2, 1, 0, 0],
+        [1, 0, 0, 1],
+      ],
     });
 
     jest.restoreAllMocks();
@@ -58,9 +73,10 @@ describe("Dott Assignment E2e", () => {
 
   it("should Exception when test case size Input is wrong", async () => {
     //given
+
     let lineNumber = 0;
     const input = ["A   ", "3 4", "0001", "0011", "0110"];
-    let error: Exception = null;
+    let error = null;
     const lineReader = async () => {
       return input[lineNumber++];
     };
@@ -71,7 +87,7 @@ describe("Dott Assignment E2e", () => {
       .mockImplementation(lineReader);
 
     //when
-    await main().catch((e) => (error = e));
+    await app(commandProcessor, finder).catch((e) => (error = e));
 
     //then
     expect(error).toBeDefined();
@@ -83,9 +99,10 @@ describe("Dott Assignment E2e", () => {
 
   it("should Exception when test case size Input is wrong", async () => {
     //given
+
     let lineNumber = 0;
     const input = ["A   ", "3 4", "0001", "0011", "0110"];
-    let error: Exception = null;
+    let error = null;
     const lineReader = async () => {
       return input[lineNumber++];
     };
@@ -96,7 +113,7 @@ describe("Dott Assignment E2e", () => {
       .mockImplementation(lineReader);
 
     //when
-    await main().catch((e) => (error = e));
+    await app(commandProcessor, finder).catch((e) => (error = e));
 
     //then
     expect(error).toBeDefined();
@@ -104,5 +121,15 @@ describe("Dott Assignment E2e", () => {
     expect(error.message).toBe("Input is wrong");
 
     jest.restoreAllMocks();
+  });
+
+  it("should throw ConfigIsWrongException", async () => {
+    //given
+
+    //when
+    //then
+    expect(() => new Config({ testCaseMinSize: "aaaa" })).toThrow(
+      ConfigIsWrongException
+    );
   });
 });

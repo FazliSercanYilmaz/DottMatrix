@@ -5,4 +5,5 @@ export enum ExceptionCodes {
   VALUE_IS_WRONG = 500,
   CONFIG_IS_WRONG = 600,
   INPUT_IS_WRONG = 700,
+  TARGET_NOT_FOUND = 800,
 }

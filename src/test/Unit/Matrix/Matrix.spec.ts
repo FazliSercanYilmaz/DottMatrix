@@ -1,8 +1,10 @@
+import { IndexOutOfRangeException } from "../../../Models/Exceptions/Matrix/IndexOutOfRangeException";
 import { Matrix } from "../../../Models/Domains/Matrix";
+import { RowOutOfRangeException } from "../../../Models/Exceptions/Matrix/RowOutOfRangeException";
 
-export class TestMatix extends Matrix<number> {
+export class TestMatrix extends Matrix<number> {
   constructor(rowLength: number, columnLength: number) {
-    super(rowLength, columnLength);
+    super(1, rowLength, columnLength);
     this.data = new Array<Array<number>>();
   }
 }
@@ -12,7 +14,7 @@ describe("Matrix test", () => {
     //given
     const rowLength = 5;
     const colomnLength = 5;
-    const testMatrix = new TestMatix(rowLength, colomnLength);
+    const testMatrix = new TestMatrix(rowLength, colomnLength);
 
     //when
     testMatrix.insertRow([]);
@@ -26,29 +28,22 @@ describe("Matrix test", () => {
     //given
     const rowLength = 5;
     const colomnLength = 5;
-    const testMatrix = new TestMatix(rowLength, colomnLength);
+    const testMatrix = new TestMatrix(rowLength, colomnLength);
 
     //when
     testMatrix.insertRow([]);
 
-    let error = null;
-    try {
-      testMatrix.setValue({ x: 6, y: -6 }, 5);
-    } catch (e) {
-      error = e;
-    }
-
     //then
-    expect(error).toBeDefined();
-    expect(error.code).toBe(100);
-    expect(error.message).toBe("Index out of range");
+    expect(() => testMatrix.setValue({ x: 6, y: -6 }, 5)).toThrow(
+      IndexOutOfRangeException
+    );
   });
 
   it("should get value from matrix succecsfully", () => {
     //given
     const rowLength = 5;
     const colomnLength = 5;
-    const testMatrix = new TestMatix(rowLength, colomnLength);
+    const testMatrix = new TestMatrix(rowLength, colomnLength);
 
     //when
     testMatrix.insertRow([]);
@@ -62,21 +57,27 @@ describe("Matrix test", () => {
     //given
     const rowLength = 5;
     const colomnLength = 5;
-    const testMatrix = new TestMatix(rowLength, colomnLength);
+    const testMatrix = new TestMatrix(rowLength, colomnLength);
 
     //when
     testMatrix.insertRow([]);
 
-    let error = null;
-    try {
-      expect(testMatrix.getValue({ x: 20, y: 30 })).toBe(20);
-    } catch (e) {
-      error = e;
-    }
+    //then
+    expect(() => testMatrix.setValue({ x: 6, y: -6 }, 5)).toThrow(
+      IndexOutOfRangeException
+    );
+  });
+
+  it("should throw RowOutOfRangeException", () => {
+    //given
+    const rowLength = 1;
+    const colomnLength = 5;
+    const testMatrix = new TestMatrix(rowLength, colomnLength);
+
+    //when
+    testMatrix.insertRow([]);
 
     //then
-    expect(error).toBeDefined();
-    expect(error.code).toBe(100);
-    expect(error.message).toBe("Index out of range");
+    expect(() => testMatrix.insertRow([])).toThrow(RowOutOfRangeException);
   });
 });

@@ -8,8 +8,12 @@ import { ValueIsWrongException } from "../Models/Exceptions/Matrix/ValueIsWrongE
 export class PixelMatrixProcessor
   implements IMatrixProcessor<string, PixelMatrix>
 {
-  createMatrix(rowLength: number, columnLength: number): PixelMatrix {
-    return new PixelMatrix(rowLength, columnLength);
+  createMatrix(
+    id: number,
+    rowLength: number,
+    columnLength: number
+  ): PixelMatrix {
+    return new PixelMatrix(id, rowLength, columnLength);
   }
   insertRowToMatrix(rowData: string, matrix: PixelMatrix) {
     if (rowData.length != matrix.columnLength) {

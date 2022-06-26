@@ -6,6 +6,7 @@ export abstract class Matrix<T> {
   protected data: Array<Array<T>>;
 
   protected constructor(
+    public readonly id: number,
     public readonly rowLength: number,
     public readonly columnLength: number
   ) {}
@@ -13,7 +14,7 @@ export abstract class Matrix<T> {
   getValue(location: Location): T {
     this.checkLocation(location);
 
-    return this.data?.[location.x]?.[location.y];
+    return this.data[location.x][location.y];
   }
 
   setValue(location: Location, value: T): void {

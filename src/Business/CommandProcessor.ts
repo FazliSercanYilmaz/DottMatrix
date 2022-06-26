@@ -1,25 +1,24 @@
-import { Input } from "../Models/Domains/Input";
-import { Result } from "../Models/Domains/Result";
 import { Matrix } from "../Models/Domains/Matrix";
 import { IMatrixProcessor } from "./IMatrixProcessor";
 import { IConfig } from "../Models/Domains/IConfig";
 import * as Joi from "joi";
 import { InputIsWrongException } from "../Models/Exceptions/Command/InputIsWrongException";
-var readline = require("readline");
+import * as readline from "node:readline";
 
 export class CommandProcessor {
-  private commandReader = readline.createInterface(
-    process.stdin,
-    process.stdout
-  );
-
+  protected commandReader: readline.Interface;
   constructor(
     private readonly config: IConfig,
     private readonly matrixProcessor: IMatrixProcessor<any, Matrix<any>>,
     private readonly resultMatrixProcessor: IMatrixProcessor<any, Matrix<any>>
-  ) {}
+  ) {
+    this.commandReader = readline.createInterface(
+      process.stdin,
+      process.stdout
+    );
+  }
 
-  async getData(): Promise<Input> {
+  async getData(): Promise<Matrix<any>> {
     const testCase = this.validateTestCase(await this.readFromCommand());
 
     const matrixSize = this.validateRowColumnLength(
@@ -27,6 +26,7 @@ export class CommandProcessor {
     );
 
     const matrix = this.matrixProcessor.createMatrix(
+      testCase,
       matrixSize.row,
       matrixSize.col
     );
@@ -36,7 +36,7 @@ export class CommandProcessor {
       this.matrixProcessor.insertRowToMatrix(line, matrix);
     }
 
-    return { inputMatrix: matrix, testCase: testCase };
+    return matrix;
   }
   private validateTestCase(line: string): number {
     const { value, error } = Joi.number()
@@ -81,11 +81,10 @@ export class CommandProcessor {
     return { row, col };
   }
 
-  async saveData(data: Result) {
-    console.log(data.testCase);
-    console.log(data.inputMatrix.rowLength, " ", data.inputMatrix.columnLength);
-    console.log(this.matrixProcessor.matrixToData(data.inputMatrix));
-    console.log(this.resultMatrixProcessor.matrixToData(data.resultMatrix));
+  async saveData(data: Matrix<any>) {
+    console.log(data.id);
+    console.log(data.rowLength, " ", data.columnLength);
+    console.log(this.resultMatrixProcessor.matrixToData(data));
   }
 
   readFromCommand(): Promise<string> {

@@ -1,15 +1,21 @@
 import { PixelMatrix } from "../../../Models/Domains/PixelMatrix";
 import { PixelMatrixProcessor } from "../../../Business/PixelMatrixProcessor";
+import { ColumnOutOfRangeException } from "../../../Models/Exceptions/Matrix/ColumnOutOfRangeException";
+import { ValueIsWrongException } from "../../../Models/Exceptions/Matrix/ValueIsWrongException";
+import { Location } from "../../../Models/Domains/Location";
 
 describe("Pixel Matrix Processor  Test", () => {
+  const testId = 1;
+
   it("should create a Pixel Matrix successfully", () => {
     // given
     const pixelMatrixProcessor = new PixelMatrixProcessor();
+
     const row = 5;
     const col = 5;
 
     //when
-    const matrix = pixelMatrixProcessor.createMatrix(row, col);
+    const matrix = pixelMatrixProcessor.createMatrix(testId, row, col);
 
     //then
     expect(matrix).toBeInstanceOf(PixelMatrix);
@@ -27,7 +33,7 @@ describe("Pixel Matrix Processor  Test", () => {
     const col = 5;
 
     //when
-    const matrix = pixelMatrixProcessor.createMatrix(row, col);
+    const matrix = pixelMatrixProcessor.createMatrix(testId, row, col);
     pixelMatrixProcessor.insertRowToMatrix(rowData, matrix);
     pixelMatrixProcessor.insertRowToMatrix(rowData2, matrix);
 
@@ -45,21 +51,36 @@ describe("Pixel Matrix Processor  Test", () => {
     const col = 4;
 
     //when
-    const matrix = pixelMatrixProcessor.createMatrix(row, col);
+    const matrix = pixelMatrixProcessor.createMatrix(testId, row, col);
 
     pixelMatrixProcessor.insertRowToMatrix(rowData, matrix);
     pixelMatrixProcessor.insertRowToMatrix(rowData2, matrix);
 
     //then
-    expect(matrix.getValue({ x: 0, y: 0 })).toBe(Number.parseInt(rowData[0]));
-    expect(matrix.getValue({ x: 0, y: 1 })).toBe(Number.parseInt(rowData[1]));
-    expect(matrix.getValue({ x: 0, y: 2 })).toBe(Number.parseInt(rowData[2]));
-    expect(matrix.getValue({ x: 0, y: 3 })).toBe(Number.parseInt(rowData[3]));
-
-    expect(matrix.getValue({ x: 1, y: 0 })).toBe(Number.parseInt(rowData2[0]));
-    expect(matrix.getValue({ x: 1, y: 1 })).toBe(Number.parseInt(rowData2[1]));
-    expect(matrix.getValue({ x: 1, y: 2 })).toBe(Number.parseInt(rowData2[2]));
-    expect(matrix.getValue({ x: 1, y: 3 })).toBe(Number.parseInt(rowData2[3]));
+    expect(matrix.getValue(new Location({ x: 0, y: 0 }))).toBe(
+      Number.parseInt(rowData[0])
+    );
+    expect(matrix.getValue(new Location({ x: 0, y: 1 }))).toBe(
+      Number.parseInt(rowData[1])
+    );
+    expect(matrix.getValue(new Location({ x: 0, y: 2 }))).toBe(
+      Number.parseInt(rowData[2])
+    );
+    expect(matrix.getValue(new Location({ x: 0, y: 3 }))).toBe(
+      Number.parseInt(rowData[3])
+    );
+    expect(matrix.getValue(new Location({ x: 1, y: 0 }))).toBe(
+      Number.parseInt(rowData2[0])
+    );
+    expect(matrix.getValue(new Location({ x: 1, y: 1 }))).toBe(
+      Number.parseInt(rowData2[1])
+    );
+    expect(matrix.getValue(new Location({ x: 1, y: 2 }))).toBe(
+      Number.parseInt(rowData2[2])
+    );
+    expect(matrix.getValue(new Location({ x: 1, y: 3 }))).toBe(
+      Number.parseInt(rowData2[3])
+    );
   });
 
   it("should throw Exception when Inserted row's coloum length is out of range", () => {
@@ -71,19 +92,11 @@ describe("Pixel Matrix Processor  Test", () => {
     const col = 4;
 
     //when
-    const matrix = pixelMatrixProcessor.createMatrix(row, col);
+    const matrix = pixelMatrixProcessor.createMatrix(testId, row, col);
 
-    let error = null;
-    try {
-      pixelMatrixProcessor.insertRowToMatrix(rowData, matrix);
-    } catch (e) {
-      error = e;
-    }
-
-    //then
-    expect(error).toBeDefined();
-    expect(error.code).toBe(200);
-    expect(error.message).toBe("Colomn out of range");
+    expect(() =>
+      pixelMatrixProcessor.insertRowToMatrix(rowData, matrix)
+    ).toThrow(ColumnOutOfRangeException);
   });
 
   it("should throw Exception when Inserted row Value not Equal to number", () => {
@@ -95,18 +108,10 @@ describe("Pixel Matrix Processor  Test", () => {
     const col = 4;
 
     //when
-    const matrix = pixelMatrixProcessor.createMatrix(row, col);
+    const matrix = pixelMatrixProcessor.createMatrix(testId, row, col);
 
-    let error = null;
-    try {
-      pixelMatrixProcessor.insertRowToMatrix(rowData, matrix);
-    } catch (e) {
-      error = e;
-    }
-
-    //then
-    expect(error).toBeDefined();
-    expect(error.code).toBe(500);
-    expect(error.message).toBe("Value is wrong");
+    expect(() =>
+      pixelMatrixProcessor.insertRowToMatrix(rowData, matrix)
+    ).toThrow(ValueIsWrongException);
   });
 });

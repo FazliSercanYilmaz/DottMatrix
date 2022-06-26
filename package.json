@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:dev": "ts-node ./src/app.ts",
+    "start:dev": "ts-node ./src/main.ts",
     "test": "jest --coverage"
   },
   "author": "",
@@ -40,6 +40,9 @@
       "**/*.(t|j)s"
     ],
     "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "modulePathIgnorePatterns": [
+      "./src/app.ts"
+    ]
   }
 }

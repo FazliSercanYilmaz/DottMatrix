@@ -1,14 +1,17 @@
 import { ResultMatrix } from "../../../Models/Domains/ResultMatrix";
 import { ResultMatrixProcessor } from "../../../Business/ResultMatrixProcessor";
+import { ValueIsWrongException } from "../../../Models/Exceptions/Matrix/ValueIsWrongException";
+import { ColumnOutOfRangeException } from "../../../Models/Exceptions/Matrix/ColumnOutOfRangeException";
 
 describe("Result Matrix Processor Test", () => {
   it("should create a Result Matrix successfully", () => {
     // given
     const resultMatrixProcessor = new ResultMatrixProcessor();
+    const id = 1;
     const row = 5;
     const col = 5;
 
-    const matrix = resultMatrixProcessor.createMatrix(row, col);
+    const matrix = resultMatrixProcessor.createMatrix(id, row, col);
 
     expect(matrix).toBeInstanceOf(ResultMatrix);
     expect(matrix.rowLength).toBe(row);
@@ -21,10 +24,11 @@ describe("Result Matrix Processor Test", () => {
     const rowData = [0, 0, 3, 1, 1];
     const rowData2 = [0, 0, 3, 1, 1];
 
+    const id = 1;
     const row = 2;
     const col = 5;
 
-    const matrix = resultMatrixProcessor.createMatrix(row, col);
+    const matrix = resultMatrixProcessor.createMatrix(id, row, col);
     resultMatrixProcessor.insertRowToMatrix(rowData, matrix);
     resultMatrixProcessor.insertRowToMatrix(rowData2, matrix);
 
@@ -39,10 +43,11 @@ describe("Result Matrix Processor Test", () => {
     const rowData = [0, 0, 3, 1];
     const rowData2 = [1, 2, 0, 1];
 
+    const id = 1;
     const row = 4;
     const col = 4;
 
-    const matrix = resultMatrixProcessor.createMatrix(row, col);
+    const matrix = resultMatrixProcessor.createMatrix(id, row, col);
 
     resultMatrixProcessor.insertRowToMatrix(rowData, matrix);
     resultMatrixProcessor.insertRowToMatrix(rowData2, matrix);
@@ -63,16 +68,17 @@ describe("Result Matrix Processor Test", () => {
     const resultMatrixProcessor = new ResultMatrixProcessor();
     const rowData = [0, 0, 3, 1, 5];
 
+    const id = 1;
     const row = 4;
     const col = 4;
 
-    const matrix = resultMatrixProcessor.createMatrix(row, col);
+    const matrix = resultMatrixProcessor.createMatrix(id, row, col);
 
     //when
     //then
     expect(() =>
-      resultMatrixProcessor.insertRowToMatrix(rowData, matrix)
-    ).toThrow("Colomn out of range");
+      resultMatrixProcessor.insertRowToMatrix(rowData as number[], matrix)
+    ).toThrow(ColumnOutOfRangeException);
   });
 
   it("should throw Exception when Inserted row Value not Equal to number", () => {
@@ -80,15 +86,16 @@ describe("Result Matrix Processor Test", () => {
     const resultMatrixProcessor = new ResultMatrixProcessor();
     const rowData = ["a", 3, 1, 5];
 
+    const id = 1;
     const row = 4;
     const col = 4;
 
-    const matrix = resultMatrixProcessor.createMatrix(row, col);
+    const matrix = resultMatrixProcessor.createMatrix(id, row, col);
 
     // when
     //then
     expect(() =>
       resultMatrixProcessor.insertRowToMatrix(rowData as number[], matrix)
-    ).toThrow("Value is wrong");
+    ).toThrow(ValueIsWrongException);
   });
 });

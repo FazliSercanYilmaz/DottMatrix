@@ -3,7 +3,7 @@ import { ExceptionMessages } from "../../Enums/ExceptionMessages";
 import { Exception } from "../Exception";
 
 export class ValueIsWrongException extends Exception {
-  constructor(detail: string = null) {
+  constructor(detail: string) {
     super(
       ExceptionCodes.VALUE_IS_WRONG,
       ExceptionMessages.VALUE_IS_WRONG,

@@ -5,4 +5,5 @@ export enum ExceptionMessages {
   VALUE_IS_WRONG = "Value is wrong",
   CONFIG_IS_WRONG = "Config is wrong",
   INPUT_IS_WRONG = "Input is wrong",
+  TARGET_NOT_FOUND = "Target not found",
 }

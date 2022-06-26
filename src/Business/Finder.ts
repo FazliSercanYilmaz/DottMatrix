@@ -1,3 +1,4 @@
+import { TargetNotFoundException } from "../Models/Exceptions/Finder/TargetNotFoundException";
 import { Location } from "../Models/Domains/Location";
 import { Matrix } from "../Models/Domains/Matrix";
 import { IFinder } from "./IFinder";
@@ -11,7 +12,9 @@ export class Finder<T> implements IFinder<T> {
     >
   ) {}
   findDistanceMatrix(matrix: Matrix<T>, targetValue: T): Matrix<number> {
+    this.validateMatrix(matrix, targetValue);
     const distanceMatrix = this.resultMatrixProcessor.createMatrix(
+      matrix.id,
       matrix.rowLength,
       matrix.columnLength
     );
@@ -28,7 +31,7 @@ export class Finder<T> implements IFinder<T> {
     return distanceMatrix;
   }
 
-  findNearestDistance(
+  private findNearestDistance(
     location: Location,
     matrix: Matrix<T>,
     targetValue: T
@@ -51,6 +54,17 @@ export class Finder<T> implements IFinder<T> {
     }
 
     return distance;
+  }
+
+  private validateMatrix(matrix: Matrix<T>, targetValue: T) {
+    for (let x = 0; x < matrix.rowLength; x++) {
+      for (let y = 0; y < matrix.columnLength; y++) {
+        if (matrix.getValue({ x, y }) === targetValue) {
+          return;
+        }
+      }
+    }
+    throw new TargetNotFoundException();
   }
 
   private calculateDistance(source: Location, target: Location) {
