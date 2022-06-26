@@ -3,7 +3,7 @@ import { IMatrixProcessor } from "./IMatrixProcessor";
 import { IConfig } from "../Models/Domains/IConfig";
 import * as Joi from "joi";
 import { InputIsWrongException } from "../Models/Exceptions/Command/InputIsWrongException";
-import * as readline from "node:readline";
+import * as readline from "readline";
 
 export class CommandProcessor {
   protected commandReader: readline.Interface;
@@ -88,8 +88,6 @@ export class CommandProcessor {
   }
 
   async saveData(data: Matrix<unknown>): Promise<void> {
-    console.log(data.id);
-    console.log(data.rowLength, " ", data.columnLength);
     console.log(this.resultMatrixProcessor.matrixToData(data));
   }
 

@@ -1,4 +1,4 @@
-**Note :** You need to install **Node.Js** to run projects
+**Note :** You need to install **Node.Js** (v14.18.2) to run projects
 
 - ### Installation
 
@@ -13,9 +13,13 @@
     npm run test:all
   ```
 - ### Run
+
   ```bash
     npm start
   ```
+
+  (./images/testCovarage.png)
+
 - ### Linting
   ```bash
     npm run lint
@@ -30,11 +34,12 @@
   MATRIX_MIN_COLUMN -> Sets minumum input matrix column length. Default value is 1. Should be positive integer
   ```
 - ### Destcription
-  This program calculates the nearest white distance for each input matrix element and output to result matrix. It uses bruce force algorithm to find nearest instance of white element. Program uses 0 for black points. 1 For white points.
+  This program calculates the nearest white distance for each input matrix element and output to result matrix. It uses bruce force algorithm to find nearest instance of white element. Program uses 0 for black points, 1 for white points.
 - ### Example
 - First line is testCase id.
 - Second line is x and y dimentions of the matrix.
 - Each other lines are row datas of the matrix. Each row data length should be equal to y dimention and should only include 0 or 1
+  input:
   ```bash
   cmd:npm start
   cmd:1
@@ -45,8 +50,6 @@
   ```
   output:
   ```console
-  1
-  3 4
   3 2 1 0
   2 1 0 0
   1 0 0 1
