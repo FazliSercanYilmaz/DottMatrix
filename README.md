@@ -60,7 +60,7 @@
   | Exception                   | Code | Message             |
   | --------------------------- | ---- | ------------------- |
   | `IndexOutOfRangeException`  | 100  | Index out of range  |
-  | `ColumnOutOfRangeException` | 200  | Colomn out of range |
+  | `ColumnOutOfRangeException` | 200  | Column out of range |
   | `RowOutOfRangeException`    | 300  | Row out of range    |
   | `ValueIsWrongException`     | 500  | Value is wrong      |
   | `ConfigIsWrongException`    | 600  | Config is wrong     |
