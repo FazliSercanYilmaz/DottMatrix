@@ -1,3 +1,4 @@
+import * as Joi from "joi";
 import { IndexOutOfRangeException } from "../Exceptions/Matrix/IndexOutOfRangeException";
 import { RowOutOfRangeException } from "../Exceptions/Matrix/RowOutOfRangeException";
 import { Location } from "./Location";
@@ -24,11 +25,21 @@ export abstract class Matrix<T> {
   }
 
   private checkLocation(location: Location): void {
-    const isLocationOutOfRange =
-      location.x >= this.rowLength ||
-      location.y >= this.columnLength ||
-      location.x < 0 ||
-      location.y < 0;
+    //todo joi
+
+    const { error: rowError } = Joi.number()
+      .required()
+      .min(0)
+      .max(this.rowLength - 1)
+      .validate(location.x);
+
+    const { error: colError } = Joi.number()
+      .required()
+      .min(0)
+      .max(this.columnLength - 1)
+      .validate(location.y);
+
+    const isLocationOutOfRange = colError || rowError;
 
     if (isLocationOutOfRange) {
       throw new IndexOutOfRangeException();
