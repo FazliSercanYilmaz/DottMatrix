@@ -1,9 +1,9 @@
-import { CommandProcessor } from "../../../src/Business/CommandProcessor";
-import { IConfig } from "../../../src/Models/Domains/IConfig";
-import { ResultMatrixProcessor } from "../../../src/Business/ResultMatrixProcessor";
-import { PixelMatrixProcessor } from "../../../src/Business/PixelMatrixProcessor";
-import { Matrix } from "../../../src/Models/Domains/Matrix";
-import { PixelColor } from "../../../src/Models/Enums/PixelColor";
+import { CommandProcessor } from "../../../Business/CommandProcessor";
+import { IConfig } from "../../../Models/Domains/IConfig";
+import { ResultMatrixProcessor } from "../../../Business/ResultMatrixProcessor";
+import { PixelMatrixProcessor } from "../../../Business/PixelMatrixProcessor";
+import { Matrix } from "../../../Models/Domains/Matrix";
+import { PixelColor } from "../../../Models/Enums/PixelColor";
 
 describe("Command Processor  Test", () => {
   beforeEach(() => {
@@ -14,7 +14,6 @@ describe("Command Processor  Test", () => {
   });
   it("should read input from console succecsfully", async () => {
     //given
-
     const mocketConfig = {
       testCaseMinSize: 1,
       testCaseMaxSize: 200,
@@ -132,8 +131,10 @@ describe("Command Processor  Test", () => {
     } catch (e) {
       error = e;
     }
+
     //then
     expect(error).toBeDefined();
+    expect(error.code).toBe(700);
     expect(error.message).toBe("Input is wrong");
   });
 
@@ -179,15 +180,16 @@ describe("Command Processor  Test", () => {
       .spyOn(commandProcessor, "readFromCommand")
       .mockImplementation(lineReader);
 
-    //then
     let error = null;
     try {
       await commandProcessor.getData();
     } catch (e) {
       error = e;
     }
+
     //then
     expect(error).toBeDefined();
+    expect(error.code).toBe(700);
     expect(error.message).toBe("Input is wrong");
   });
 
@@ -233,15 +235,16 @@ describe("Command Processor  Test", () => {
       .spyOn(commandProcessor, "readFromCommand")
       .mockImplementation(lineReader);
 
-    //then
     let error = null;
     try {
       await commandProcessor.getData();
     } catch (e) {
       error = e;
     }
+
     //then
     expect(error).toBeDefined();
+    expect(error.code).toBe(700);
     expect(error.message).toBe("Input is wrong");
   });
 
@@ -286,8 +289,9 @@ describe("Command Processor  Test", () => {
     } catch (e) {
       error = e;
     }
-    //then
+
     expect(error).toBeDefined();
+    expect(error.code).toBe(700);
     expect(error.message).toBe("Input is wrong");
   });
 
@@ -383,6 +387,7 @@ describe("Command Processor  Test", () => {
       .mockImplementation(outputReader);
 
     await commandProcessor.saveData(mockedResult as any);
+
     //then
     expect(outputResult).toBe(
       "1\n3 4\n[[0,0,0,1],[0,0,1,1],[0,1,1,0]]\n[[3,2,1,0],[2,1,0,0],[1,0,0,1]]\n"

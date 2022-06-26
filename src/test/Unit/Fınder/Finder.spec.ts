@@ -1,14 +1,15 @@
-import { IFinder } from "../../../src//Business/IFinder";
-import { IMatrixProcessor } from "../../../src//Business/IMatrixProcessor";
-import { ResultMatrixProcessor } from "../../../src//Business/ResultMatrixProcessor";
-import { Matrix } from "../../../src/Models/Domains/Matrix";
-import { ResultMatrix } from "../../../src//Models/Domains/ResultMatrix";
-import { PixelColor } from "../../../src/Models/Enums/PixelColor";
-import { Finder } from "../../../src/Business/Finder";
-import { PixelMatrix } from "../../../src/Models/Domains/PixelMatrix";
+import { IFinder } from "../../../Business/IFinder";
+import { IMatrixProcessor } from "../../../Business/IMatrixProcessor";
+import { ResultMatrixProcessor } from "../../../Business/ResultMatrixProcessor";
+import { Matrix } from "../../../Models/Domains/Matrix";
+import { ResultMatrix } from "../../../Models/Domains/ResultMatrix";
+import { PixelColor } from "../../../Models/Enums/PixelColor";
+import { Finder } from "../../../Business/Finder";
+import { PixelMatrix } from "../../../Models/Domains/PixelMatrix";
 
 describe("Finder  Test", () => {
   it("should finder create distance matrix", () => {
+    //given
     const mockedPixelMatrix = {
       rowLength: 3,
       columnLength: 4,
@@ -50,8 +51,10 @@ describe("Finder  Test", () => {
         matrix.data.push(rowData);
       });
 
+    //when
     const finder: IFinder<any> = new Finder(resultMatrixProcessor);
 
+    //then
     expect(
       finder.findDistanceMatrix(
         mockedPixelMatrix as any as PixelMatrix,

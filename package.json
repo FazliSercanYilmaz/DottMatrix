@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "ts-node ./src/app.ts",
-    "test": "jest --coverage --watchAll"
+    "test": "jest --coverage"
   },
   "author": "",
   "license": "ISC",
@@ -31,7 +31,7 @@
       "json",
       "ts"
     ],
-    "rootDir": "./test",
+    "rootDir": "./src",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"

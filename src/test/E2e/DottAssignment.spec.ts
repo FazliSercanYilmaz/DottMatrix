@@ -1,7 +1,7 @@
-import { Matrix } from "../../src/Models/Domains/Matrix";
-import { Result } from "../../src/Models/Domains/Result";
-import { commandProcessor, main } from "../../src/main";
-import { Exception } from "../../src/Models/Exceptions/Exception";
+import { Matrix } from "../../Models/Domains/Matrix";
+import { Result } from "../../Models/Domains/Result";
+import { commandProcessor, main } from "../../main";
+import { Exception } from "../../Models/Exceptions/Exception";
 import { InputIsWrongException } from "src/Models/Exceptions/Command/InputIsWrongException";
 
 describe("Dott Assignment E2e", () => {

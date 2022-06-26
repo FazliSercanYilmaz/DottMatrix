@@ -1,5 +1,5 @@
-import { ResultMatrix } from "../../../src/Models/Domains/ResultMatrix";
-import { ResultMatrixProcessor } from "../../../src/Business/ResultMatrixProcessor";
+import { ResultMatrix } from "../../../Models/Domains/ResultMatrix";
+import { ResultMatrixProcessor } from "../../../Business/ResultMatrixProcessor";
 
 describe("Result Matrix Processor Test", () => {
   it("should create a Result Matrix successfully", () => {
