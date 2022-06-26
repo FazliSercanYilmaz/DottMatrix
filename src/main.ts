@@ -10,16 +10,17 @@ import { Matrix } from "./Models/Domains/Matrix";
 const config = new Config(process.env);
 
 const matrixProcessor: IMatrixProcessor<
-  any,
-  Matrix<any>
+  unknown,
+  Matrix<unknown>
 > = new PixelMatrixProcessor();
 
 const resultMatrixProcessor: IMatrixProcessor<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   any,
-  Matrix<any>
+  Matrix<number>
 > = new ResultMatrixProcessor();
 
-export const finder: IFinder<any> = new Finder(resultMatrixProcessor);
+export const finder: IFinder<unknown> = new Finder(resultMatrixProcessor);
 
 const commandProcessor = new CommandProcessor(
   config,

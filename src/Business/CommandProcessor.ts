@@ -9,8 +9,14 @@ export class CommandProcessor {
   protected commandReader: readline.Interface;
   constructor(
     private readonly config: IConfig,
-    private readonly matrixProcessor: IMatrixProcessor<any, Matrix<any>>,
-    private readonly resultMatrixProcessor: IMatrixProcessor<any, Matrix<any>>
+    private readonly matrixProcessor: IMatrixProcessor<
+      unknown,
+      Matrix<unknown>
+    >,
+    private readonly resultMatrixProcessor: IMatrixProcessor<
+      unknown,
+      Matrix<unknown>
+    >
   ) {
     this.commandReader = readline.createInterface(
       process.stdin,
@@ -18,7 +24,7 @@ export class CommandProcessor {
     );
   }
 
-  async getData(): Promise<Matrix<any>> {
+  async getData(): Promise<Matrix<unknown>> {
     const testCase = this.validateTestCase(await this.readFromCommand());
 
     const matrixSize = this.validateRowColumnLength(
@@ -81,7 +87,7 @@ export class CommandProcessor {
     return { row, col };
   }
 
-  async saveData(data: Matrix<any>): Promise<void> {
+  async saveData(data: Matrix<unknown>): Promise<void> {
     console.log(data.id);
     console.log(data.rowLength, " ", data.columnLength);
     console.log(this.resultMatrixProcessor.matrixToData(data));

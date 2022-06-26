@@ -4,7 +4,7 @@ import { PixelColor } from "./Models/Enums/PixelColor";
 
 export async function app(
   commandProcessor: CommandProcessor,
-  finder: IFinder<any>
+  finder: IFinder<unknown>
 ) {
   const pixelMatrix = await commandProcessor.getData();
 

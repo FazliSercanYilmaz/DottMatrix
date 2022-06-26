@@ -10,7 +10,7 @@ export class Config implements IConfig {
   public readonly matrixMinColumn: number;
   public readonly matrixMaxColumn: number;
 
-  constructor(env: any) {
+  constructor(env) {
     this.testCaseMinSize = env.TEST_CASE_MIN_SIZE;
     this.testCaseMaxSize = env.TEST_CASE_MAX_SIZE;
 
