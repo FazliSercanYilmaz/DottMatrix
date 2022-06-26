@@ -128,7 +128,7 @@ describe("Dott Assignment E2e", () => {
 
     //when
     //then
-    expect(() => new Config({ testCaseMinSize: "aaaa" })).toThrow(
+    expect(() => new Config({ TEST_CASE_MIN_SIZE: "aaaa" })).toThrow(
       ConfigIsWrongException
     );
   });

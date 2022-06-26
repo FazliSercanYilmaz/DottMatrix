@@ -28,7 +28,7 @@ export class PixelMatrixProcessor
     }
   }
 
-  private validatePixelColor(data: any): PixelColor {
+  private validatePixelColor(data: string): PixelColor {
     const { error, value } = Joi.number()
       .required()
       .valid(PixelColor.BLACK, PixelColor.WHITE)

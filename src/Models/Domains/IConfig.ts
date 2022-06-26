@@ -3,6 +3,6 @@ export interface IConfig {
   testCaseMaxSize: number;
   matrixMaxRow: number;
   matrixMinRow: number;
-  matrixMinColom: number;
-  matrixMaxColom: number;
+  matrixMinColumn: number;
+  matrixMaxColumn: number;
 }

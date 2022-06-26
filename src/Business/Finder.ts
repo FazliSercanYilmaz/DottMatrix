@@ -56,7 +56,7 @@ export class Finder<T> implements IFinder<T> {
     return distance;
   }
 
-  private validateMatrix(matrix: Matrix<T>, targetValue: T) {
+  private validateMatrix(matrix: Matrix<T>, targetValue: T): void {
     for (let x = 0; x < matrix.rowLength; x++) {
       for (let y = 0; y < matrix.columnLength; y++) {
         if (matrix.getValue({ x, y }) === targetValue) {
@@ -67,7 +67,7 @@ export class Finder<T> implements IFinder<T> {
     throw new TargetNotFoundException();
   }
 
-  private calculateDistance(source: Location, target: Location) {
+  private calculateDistance(source: Location, target: Location): number {
     return Math.abs(source.x - target.x) + Math.abs(source.y - target.y);
   }
 }

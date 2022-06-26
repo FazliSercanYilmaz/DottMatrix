@@ -20,8 +20,8 @@ describe("Command Processor  Test", () => {
       testCaseMaxSize: 200,
       matrixMaxRow: 300,
       matrixMinRow: 1,
-      matrixMinColom: 1,
-      matrixMaxColom: 600,
+      matrixMinColumn: 1,
+      matrixMaxColumn: 600,
     } as IConfig;
 
     const mockedMatrix = {
@@ -93,8 +93,8 @@ describe("Command Processor  Test", () => {
       testCaseMaxSize: 200,
       matrixMaxRow: 300,
       matrixMinRow: 1,
-      matrixMinColom: 1,
-      matrixMaxColom: 600,
+      matrixMinColumn: 1,
+      matrixMaxColumn: 600,
     } as IConfig;
 
     const mockedMatrix = {
@@ -140,8 +140,8 @@ describe("Command Processor  Test", () => {
       testCaseMaxSize: 200,
       matrixMaxRow: 300,
       matrixMinRow: 1,
-      matrixMinColom: 1,
-      matrixMaxColom: 600,
+      matrixMinColumn: 1,
+      matrixMaxColumn: 600,
     } as IConfig;
 
     const mockedMatrix = {
@@ -188,8 +188,8 @@ describe("Command Processor  Test", () => {
       testCaseMaxSize: 200,
       matrixMaxRow: 300,
       matrixMinRow: 1,
-      matrixMinColom: 1,
-      matrixMaxColom: 600,
+      matrixMinColumn: 1,
+      matrixMaxColumn: 600,
     } as IConfig;
 
     const mockedMatrix = {
@@ -235,8 +235,8 @@ describe("Command Processor  Test", () => {
       testCaseMaxSize: 200,
       matrixMaxRow: 300,
       matrixMinRow: 1,
-      matrixMinColom: 1,
-      matrixMaxColom: 600,
+      matrixMinColumn: 1,
+      matrixMaxColumn: 600,
     } as IConfig;
 
     const mockedMatrixProcessor = {} as PixelMatrixProcessor;
@@ -275,8 +275,8 @@ describe("Command Processor  Test", () => {
       testCaseMaxSize: 200,
       matrixMaxRow: 300,
       matrixMinRow: 1,
-      matrixMinColom: 1,
-      matrixMaxColom: 600,
+      matrixMinColumn: 1,
+      matrixMaxColumn: 600,
     } as IConfig;
 
     const mockedMatrix = {
@@ -322,8 +322,8 @@ describe("Command Processor  Test", () => {
       testCaseMaxSize: 200,
       matrixMaxRow: 300,
       matrixMinRow: 1,
-      matrixMinColom: 1,
-      matrixMaxColom: 600,
+      matrixMinColumn: 1,
+      matrixMaxColumn: 600,
     } as IConfig;
 
     const mockedMatrixProcessor = {} as PixelMatrixProcessor;
@@ -362,8 +362,8 @@ describe("Command Processor  Test", () => {
       testCaseMaxSize: 200,
       matrixMaxRow: 300,
       matrixMinRow: 1,
-      matrixMinColom: 1,
-      matrixMaxColom: 600,
+      matrixMinColumn: 1,
+      matrixMaxColumn: 600,
     } as IConfig;
 
     const mockedResult = {

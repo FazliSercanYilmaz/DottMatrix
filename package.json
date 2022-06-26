@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "ts-node ./src/main.ts",
     "start:dev": "ts-node ./src/main.ts",
-    "test": "jest --coverage"
+    "test:all": "jest --coverage"
   },
   "author": "",
   "license": "ISC",
