@@ -83,7 +83,7 @@ describe("Pixel Matrix Processor  Test", () => {
     );
   });
 
-  it("should throw Exception when Inserted row's coloum length is out of range", () => {
+  it("should throw ColumnOutOfRangeException when Inserted row's coloum length is out of range", () => {
     // given
     const pixelMatrixProcessor = new PixelMatrixProcessor();
     const rowData = "00011";
@@ -99,7 +99,7 @@ describe("Pixel Matrix Processor  Test", () => {
     ).toThrow(ColumnOutOfRangeException);
   });
 
-  it("should throw Exception when Inserted row Value not Equal to number", () => {
+  it("should throw ValueIsWrongException when Inserted row Value not Equal to number", () => {
     // given
     const pixelMatrixProcessor = new PixelMatrixProcessor();
     const rowData = "2001";

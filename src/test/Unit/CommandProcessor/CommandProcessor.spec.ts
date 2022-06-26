@@ -85,7 +85,7 @@ describe("Command Processor  Test", () => {
     });
   });
 
-  it("should throw Exception when Test case isn't number ", async () => {
+  it("should throw InputIsWrongException when Test case isn't number ", async () => {
     //given
 
     const mockedConfig = {
@@ -132,7 +132,7 @@ describe("Command Processor  Test", () => {
     );
   });
 
-  it("should throw Exception when Test case isn't in range", async () => {
+  it("should throw InputIsWrongException when Test case isn't in range", async () => {
     //given
 
     const mockedConfig = {
@@ -180,7 +180,7 @@ describe("Command Processor  Test", () => {
     );
   });
 
-  it("should throw Exception when matrix row is wrong", async () => {
+  it("should throw InputIsWrongException when matrix row is wrong", async () => {
     //given
 
     const mockedConfig = {
@@ -227,7 +227,7 @@ describe("Command Processor  Test", () => {
     );
   });
 
-  it("should throw Exception when matrix row isn't in range", async () => {
+  it("should throw InputIsWrongException when matrix row isn't in range", async () => {
     //given
 
     const mockedConfig = {
@@ -267,7 +267,7 @@ describe("Command Processor  Test", () => {
     );
   });
 
-  it("should throw Exception when matrix col is wrong", async () => {
+  it("should throw InputIsWrongException when matrix col is wrong", async () => {
     //given
 
     const mockedConfig = {
@@ -314,7 +314,7 @@ describe("Command Processor  Test", () => {
     );
   });
 
-  it("should throw Exception when matrix col isn't in range", async () => {
+  it("should throw InputIsWrongException when matrix col isn't in range", async () => {
     //given
 
     const mockedConfig = {

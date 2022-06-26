@@ -24,7 +24,7 @@ describe("Matrix test", () => {
     expect((testMatrix as any).data[0][0]).toBe(5);
   });
 
-  it("should throw exception on set value when location is wrong", () => {
+  it("should throw IndexOutOfRangeException on set value when location is wrong", () => {
     //given
     const rowLength = 5;
     const columnLength = 5;
@@ -53,7 +53,7 @@ describe("Matrix test", () => {
     expect(testMatrix.getValue({ x: 0, y: 1 })).toBe(20);
   });
 
-  it("should throw exception on get value when location is wrong", () => {
+  it("should throw IndexOutOfRangeException on get value when location is wrong", () => {
     //given
     const rowLength = 5;
     const columnLength = 5;

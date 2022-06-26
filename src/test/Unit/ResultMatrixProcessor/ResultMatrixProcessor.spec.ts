@@ -63,7 +63,7 @@ describe("Result Matrix Processor Test", () => {
     expect(matrix.getValue({ x: 1, y: 3 })).toBe(rowData2[3]);
   });
 
-  it("should throw Exception when Inserted row's coloum length is out of range", () => {
+  it("should throw ColumnOutOfRangeException when Inserted row's coloum length is out of range", () => {
     // given
     const resultMatrixProcessor = new ResultMatrixProcessor();
     const rowData = [0, 0, 3, 1, 5];
@@ -81,7 +81,7 @@ describe("Result Matrix Processor Test", () => {
     ).toThrow(ColumnOutOfRangeException);
   });
 
-  it("should throw Exception when Inserted row Value not Equal to number", () => {
+  it("should throw ValueIsWrongException when Inserted row Value not Equal to number", () => {
     // given
     const resultMatrixProcessor = new ResultMatrixProcessor();
     const rowData = ["a", 3, 1, 5];

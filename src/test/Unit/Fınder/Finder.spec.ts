@@ -72,7 +72,7 @@ describe("Finder  Test", () => {
     });
   });
 
-  it("Should throw target not found exception", () => {
+  it("Should throw TargetNotFoundException", () => {
     //given
     const mockedPixelMatrix = {
       rowLength: 3,
