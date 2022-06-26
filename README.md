@@ -16,6 +16,10 @@
   ```bash
     npm start
   ```
+- ### Linting
+  ```bash
+    npm run lint
+  ```
 - ### Environment
   ```bash
   TEST_CASE_MIN_SIZE ->  Sets minumum test case number. Default value is 1. Should be positive integer
