@@ -5,8 +5,8 @@ import { Exception } from "../Exception";
 export class ColumnOutOfRangeException extends Exception {
   constructor() {
     super(
-      ExceptionCodes.COLOMN_OUT_OF_RANGE,
-      ExceptionMessages.COLOMN_OUT_OF_RANGE
+      ExceptionCodes.COLUMN_OUT_OF_RANGE,
+      ExceptionMessages.COLUMN_OUT_OF_RANGE
     );
   }
 }

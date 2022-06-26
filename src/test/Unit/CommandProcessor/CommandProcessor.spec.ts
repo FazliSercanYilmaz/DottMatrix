@@ -435,7 +435,7 @@ describe("Command Processor  Test", () => {
     await commandProcessor.saveData(mockedResult as any);
 
     //then
-    expect(outputResult).toBe("[[3,2,1,0],[2,1,0,0],[1,0,0,1]]\n");
+    expect(outputResult).toBe("output:\n[[3,2,1,0],[2,1,0,0],[1,0,0,1]]\n");
   });
 
   it("should read data from command line", () => {

@@ -18,7 +18,7 @@
     npm start
   ```
 
-  (./images/testCovarage.png)
+![Test Covarage](./images/testCovarage.png)
 
 - ### Linting
   ```bash
@@ -50,6 +50,7 @@
   ```
   output:
   ```console
+  output:
   3 2 1 0
   2 1 0 0
   1 0 0 1

@@ -13,8 +13,8 @@ describe("Matrix test", () => {
   it("should set value to matrix succecsfully", () => {
     //given
     const rowLength = 5;
-    const colomnLength = 5;
-    const testMatrix = new TestMatrix(rowLength, colomnLength);
+    const columnLength = 5;
+    const testMatrix = new TestMatrix(rowLength, columnLength);
 
     //when
     testMatrix.insertRow([]);
@@ -27,8 +27,8 @@ describe("Matrix test", () => {
   it("should throw exception on set value when location is wrong", () => {
     //given
     const rowLength = 5;
-    const colomnLength = 5;
-    const testMatrix = new TestMatrix(rowLength, colomnLength);
+    const columnLength = 5;
+    const testMatrix = new TestMatrix(rowLength, columnLength);
 
     //when
     testMatrix.insertRow([]);
@@ -42,8 +42,8 @@ describe("Matrix test", () => {
   it("should get value from matrix succecsfully", () => {
     //given
     const rowLength = 5;
-    const colomnLength = 5;
-    const testMatrix = new TestMatrix(rowLength, colomnLength);
+    const columnLength = 5;
+    const testMatrix = new TestMatrix(rowLength, columnLength);
 
     //when
     testMatrix.insertRow([]);
@@ -56,8 +56,8 @@ describe("Matrix test", () => {
   it("should throw exception on get value when location is wrong", () => {
     //given
     const rowLength = 5;
-    const colomnLength = 5;
-    const testMatrix = new TestMatrix(rowLength, colomnLength);
+    const columnLength = 5;
+    const testMatrix = new TestMatrix(rowLength, columnLength);
 
     //when
     testMatrix.insertRow([]);
@@ -71,8 +71,8 @@ describe("Matrix test", () => {
   it("should throw RowOutOfRangeException", () => {
     //given
     const rowLength = 1;
-    const colomnLength = 5;
-    const testMatrix = new TestMatrix(rowLength, colomnLength);
+    const columnLength = 5;
+    const testMatrix = new TestMatrix(rowLength, columnLength);
 
     //when
     testMatrix.insertRow([]);
