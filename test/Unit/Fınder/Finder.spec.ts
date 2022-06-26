@@ -8,7 +8,7 @@ import { Finder } from "../../../src/Business/Finder";
 import { PixelMatrix } from "../../../src/Models/Domains/PixelMatrix";
 
 describe("Finder  Test", () => {
-  it("should Finder create distance matrix", () => {
+  it("should finder create distance matrix", () => {
     const mockedPixelMatrix = {
       rowLength: 3,
       columnLength: 4,
@@ -67,4 +67,6 @@ describe("Finder  Test", () => {
       ],
     });
   });
+
+  //todo distance
 });

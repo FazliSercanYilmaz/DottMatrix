@@ -1,4 +1,4 @@
-import { ResultMatrix } from "src/Models/Domains/ResultMatrix";
+import { ResultMatrix } from "../../../src/Models/Domains/ResultMatrix";
 import { ResultMatrixProcessor } from "../../../src/Business/ResultMatrixProcessor";
 
 describe("Result Matrix Processor Test", () => {
