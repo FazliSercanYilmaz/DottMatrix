@@ -33,7 +33,7 @@
   MATRIX_MAX_COLUMN -> Sets minumum input matrix column length. Default value is 1000. Should be positive integer
   MATRIX_MIN_COLUMN -> Sets minumum input matrix column length. Default value is 1. Should be positive integer
   ```
-- ### Destcription
+- ### Description
   This program calculates the nearest white distance for each input matrix element and output to result matrix. It uses bruce force algorithm to find nearest instance of white element. Program uses 0 for black points, 1 for white points.
 - ### Example
 - First line is testCase id.
