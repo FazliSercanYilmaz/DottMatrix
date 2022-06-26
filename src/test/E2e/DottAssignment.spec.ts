@@ -8,6 +8,7 @@ import { IFinder } from "../../Business/IFinder";
 import { Finder } from "../../Business/Finder";
 import { CommandProcessor } from "../../Business/CommandProcessor";
 import { Config } from "../../Common/Config";
+import { InputIsWrongException } from "../../Models/Exceptions/Command/InputIsWrongException";
 const config = new Config({});
 
 const matrixProcessor: IMatrixProcessor<
@@ -71,7 +72,7 @@ describe("Dott Assignment E2e", () => {
     jest.restoreAllMocks();
   });
 
-  it("should Exception when test case size Input is wrong", async () => {
+  it("should throw InputIsWrongException", async () => {
     //given
 
     let lineNumber = 0;
@@ -87,38 +88,11 @@ describe("Dott Assignment E2e", () => {
       .mockImplementation(lineReader);
 
     //when
-    await app(commandProcessor, finder).catch((e) => (error = e));
 
     //then
-    expect(error).toBeDefined();
-    expect(error.code).toBe(700);
-    expect(error.message).toBe("Input is wrong");
-
-    jest.restoreAllMocks();
-  });
-
-  it("should Exception when test case size Input is wrong", async () => {
-    //given
-
-    let lineNumber = 0;
-    const input = ["A   ", "3 4", "0001", "0011", "0110"];
-    let error = null;
-    const lineReader = async () => {
-      return input[lineNumber++];
-    };
-
-    //stdin
-    jest
-      .spyOn(commandProcessor, "readFromCommand")
-      .mockImplementation(lineReader);
-
-    //when
-    await app(commandProcessor, finder).catch((e) => (error = e));
-
-    //then
-    expect(error).toBeDefined();
-    expect(error.code).toBe(700);
-    expect(error.message).toBe("Input is wrong");
+    expect(() => app(commandProcessor, finder)).rejects.toThrow(
+      InputIsWrongException
+    );
 
     jest.restoreAllMocks();
   });
