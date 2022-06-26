@@ -43,7 +43,7 @@
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
     "modulePathIgnorePatterns": [
-      "./src/app.ts"
+      "./src/main.ts"
     ]
   }
 }
